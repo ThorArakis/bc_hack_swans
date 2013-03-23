@@ -7,6 +7,8 @@ function HomeCtrl($scope, $http) {
 	$scope.lowerVariant;
 	$scope.upperProductIndex = 0;
 	$scope.upperVariantIndex = 0;
+	$scope.lowerProductIndex = 0;
+	$scope.lowerVariantIndex = 0;
 	$scope.upperCommunity;
 	$scope.lowerCommunity;
     
@@ -133,7 +135,7 @@ function HomeCtrl($scope, $http) {
 		});
 
 		
-	    $('#upperCarousel, #lowerCarousel').bind('slide', function(e) { 
+	    $('#upperCarousel').bind('slide', function(e) { 
 			if(e.direction == "left") {
 				if($scope.upperProduct) {
 					if($scope.upperProduct.variants.length > $scope.upperVariantIndex + 1) {
@@ -190,6 +192,70 @@ function HomeCtrl($scope, $http) {
 					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 						$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+						});
+				}
+			}
+			$scope.$apply();
+		});
+	    
+		$('#lowerCarousel').bind('slide', function(e) { 
+			if(e.direction == "left") {
+				if($scope.lowerProduct) {
+					if($scope.lowerProduct.variants.length > $scope.lowerVariantIndex + 1) {
+						$scope.lowerVariantIndex++;
+						$scope.variant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+					} else if ($scope.lowerProducts.length > $scope.lowerProductIndex + 1) {
+						$scope.lowerProductIndex++;
+						$scope.lowerVariantIndex = 0;
+						$scope.variant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+						$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+    					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
+						});
+					} else {
+						$scope.lowerProductIndex = 0;
+						$scope.lowerVariantIndex = 0;
+						$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+    					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
+						});
+					}
+				} else {
+					$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+					$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+    					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
+						});
+					console.log($scope.lowerProduct);
+				}
+			} else if(e.direction == "right") {
+				if($scope.lowerProduct) {
+					if($scope.lowerVariantIndex - 1 >= 0) {
+						$scope.lowerVariantIndex--;
+						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+					} else if ($scope.lowerProductIndex - 1 >= 0) {
+						$scope.lowerProductIndex--;
+						$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+						$scope.lowerVariantIndex = $scope.lowerProduct.variants.length - 1;
+						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+    					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
+						});
+					} else {
+						$scope.lowerProductIndex = $scope.lowerProducts.length - 1;
+						$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+						$scope.lowerVariantIndex = $scope.lowerProduct.variants.length - 1; 
+						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+    					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
+						});
+					}
+				} else if ($scope.lowerProducts) {
+					$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
+					$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
+						$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
+							$scope.lowerCommunity = response;
 						});
 				}
 			}

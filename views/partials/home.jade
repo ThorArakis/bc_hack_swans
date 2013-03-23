@@ -22,8 +22,8 @@ div.row-fluid
 				div.carousel-inner
 					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
 						a(href="www.backcountry.com")
-							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
-							#img( ng-src="{{upperVariant.image}}", style="margin:auto;")
+							#img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
+							img( ng-src="{{upperVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 	div.span3
@@ -88,10 +88,10 @@ div.row-fluid
 	div.span6
 			div.carousel.slide#lowerCarousel(style="height:400px;")
 				div.carousel-inner
-					div.item(ng-repeat="lowerVariant in lowerVariants", active="lowerProduct.active")
+					div.item(ng-repeat="lowerVariant in lowerVariants")
 						a(href="www.backcountry.com")
-							img( ng-src="api/image?url={{lowerVariant.image}}", style="margin:auto;")
-							#img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+							#img( ng-src="api/image?url={{lowerVariant.image}}", style="margin:auto;")
+							img( ng-src="{{lowerVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
 	div.span3
@@ -102,11 +102,11 @@ div.row-fluid
 							span Details
 					div.accordion-body.collapse.in#collapseLower1(style="max-height:300px;overflow-y:auto;")
 						div.accordion-inner
-							b {{product.title}}
+							b {{lowerProduct.title}}
 							p   
-							div(ng-bind-html-unsafe="product.description")
+							div(ng-bind-html-unsafe="lowerProduct.description")
 							p   
-							div {{product.bulletPoints}}
+							div {{lowerProduct.bulletPoints}}
 							p   
 							b Price - ${{variant.price}}
 				div.accordion-group(style="background-color:#ffffff")
@@ -116,7 +116,7 @@ div.row-fluid
 					div.accordion-body.collapse#collapseLower2(style="max-height:300px;overflow-y:auto;")
 						div.accordion-inner
 							table.table.table-striped.table-bordered
-								tr(ng-repeat="feature in product.features")
+								tr(ng-repeat="feature in lowerProduct.features")
 									td(style="width:150px; font-size:12px;"): b {{feature.displayName}}
 									td(style="font-size:12px;") {{feature.value}}
 				div.accordion-group(style="background-color:#ffffff")
@@ -125,7 +125,7 @@ div.row-fluid
 							span Community
 					div.accordion-body.collapse#collapseLower3(style="max-height:300px;overflow-y:auto;")
 						div.accordion-inner
-							div(ng-repeat="review in community.reviews")
+							div(ng-repeat="review in lowerCommunity.reviews")
 								fieldset
 									legend(style="font-size:14px;font-weight:bold;") 
 										img(src="http://content.backcountry.com/images/bcs/review/search/rating_{{review.rank}}.png")
