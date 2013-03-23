@@ -1,18 +1,16 @@
-function HomeCtrl($scope, productService) {
+function HomeCtrl($scope, $http) {
     
-  	$scope.upperProducts = productService.getUpperProducts({category : "jacket" , brand: "marmot" , gender : "men"}, function(err, products) {
-        if(err) {
-            $scope.message = err.message;
-        } else {
-        	$scope.upperProducts = products;
-		}
-
-        //$scope.$apply();
+    var category = "jackets";
+    var brand = "marmot";
+    var gender = "mens";
+    
+      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender).success(function(response) {
+        $scope.upperProducts = response;
+      });
+    
+    $(document).ready(function(){
+	    $('#upperCarousel, #lowerCarousel').carousel({ interval: false });		
     });
-    
-//  $(document).ready(function(){
-//		$('#upperCarousel, #lowerCarousel').carousel({ interval: false });		
-//	});
 	
 	
 }
