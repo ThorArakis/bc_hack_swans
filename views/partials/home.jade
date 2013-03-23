@@ -1,22 +1,23 @@
 div.row-fluid
 	div.span3.upperBodyDiv
 		h4 Upper Body
-		select(ng-model="upperCategory")
-			option(value="") -- Select Category --	
-			option(ng-repeat="category in upperCategories", value="{{category.name}}"){{category.name}}
-		select(ng-model="upperBrand")
-			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brands", value="{{brand.name}}"){{brand.name}}
-		select(ng-model="upperGender")
-			option(value="") -- Select Gender --	
-			option(ng-repeat="gender in genders", value="{{gender.name}}"){{gender.name}}
-		select(ng-model="upperColor")
-			option(value="") -- Select Color --	
-			option(ng-repeat="color in colors", value="{{color.name}}"){{color.name}}
-		select(ng-model="upperSize")
-			option(value="") -- Select Size --	
-			option(ng-repeat="size in sizes", value="{{size.name}}"){{size.name}}
-		button(ng-click="upperGo()") Load Closet
+		form(name="upperSelects")
+			select(ng-model="upperCategory", required)
+				option(value="") -- Select Category --	
+				option(ng-repeat="category in upperCategories", value="{{category.name}}"){{category.name}}
+			select(ng-model="upperBrand")
+				option(value="") -- Select Brand --	
+				option(ng-repeat="brand in brands", value="{{brand.name}}"){{brand.name}}
+			select(ng-model="upperGender")
+				option(value="") -- Select Gender --	
+				option(ng-repeat="gender in genders", value="{{gender.name}}"){{gender.name}}
+			select(ng-model="upperColor")
+				option(value="") -- Select Color --	
+				option(ng-repeat="color in colors", value="{{color.name}}"){{color.name}}
+			select(ng-model="upperSize")
+				option(value="") -- Select Size --	
+				option(ng-repeat="size in sizes", value="{{size.name}}"){{size.name}}
+			button(ng-click="upperGo()") Load Closet
 	div.span6
 			div.carousel.slide#upperCarousel(style="height:400px;")
 				div.carousel-inner
@@ -69,22 +70,24 @@ div.row-fluid
 div.row-fluid
 	div.span3.lowerBodyDiv
 		h4 Lower Body
-		select(name="lowCatsDropDown", ng-model="lowerCategory")
-			option(value="") -- Select Category --	
-			option(ng-repeat="category in lowerCategories", value="{{category.name}}") {{category.name}}
-		select(name="lowBrandsDropDown", ng-model="lowerBrand")
-			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
-		select(name="lowGenderDropDown", ng-model="lowerGender")
-			option(value="") -- Select Gender --	
-			option(ng-repeat="gender in genders", value="{{gender.name}}") {{gender.name}}	
-		select(name="lowColorDropDown", ng-model="lowerColor")
-			option(value="") -- Select Color --	
-			option(ng-repeat="color in colors", value="{{color.name}}") {{color.name}}
-		select(name="lowSizeDropDown", ng-model="lowerSize")
-			option(value="") -- Select Size --	
-			option(ng-repeat="size in sizes", value="{{size.name}}") {{size.name}}
-		button(ng-click="lowerGo()") Load Closet 
+		form(name="lowerSelects")
+			select(name="lowCatsDropDown", ng-model="lowerCategory", required)
+				option(value="") -- Select Category --	
+				option(ng-repeat="category in lowerCategories", value="{{category.name}}") {{category.name}}
+			label.lowerCatSelect(style="color:red", ng-show="lowerCatSelected") You must select a Category!
+			select(name="lowBrandsDropDown", ng-model="lowerBrand")
+				option(value="") -- Select Brand --	
+				option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
+			select(name="lowGenderDropDown", ng-model="lowerGender")
+				option(value="") -- Select Gender --	
+				option(ng-repeat="gender in genders", value="{{gender.name}}") {{gender.name}}	
+			select(name="lowColorDropDown", ng-model="lowerColor")
+				option(value="") -- Select Color --	
+				option(ng-repeat="color in colors", value="{{color.name}}") {{color.name}}
+			select(name="lowSizeDropDown", ng-model="lowerSize")
+				option(value="") -- Select Size --	
+				option(ng-repeat="size in sizes", value="{{size.name}}") {{size.name}}
+			button(ng-click="lowerGo()") Load Closet 
 	div.span6
 			div.carousel.slide#lowerCarousel(style="height:400px;")
 				div.carousel-inner
