@@ -21,7 +21,7 @@ div(style="float:left;width:300px;padding-top:20px")
 		h4 Lower Body
 		select(name="lowCatsDropDown")
 			option(value="") -- Select Category --	
-			option(ng-repeat="category in categories", value="category.name") {{category.name}}
+			option(ng-repeat="category in categories", value="category.name" ) {{category.name}}
 		select(name="lowBrandsDropDown")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
@@ -41,9 +41,9 @@ div(style="float:left")
 			li.active(data-target="#upperCarousel", data-slide-to="0")
 			li(data-target="#upperCarousel", data-slide-to="1")
 		div.carousel-inner
-			div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
+			div.item(ng-repeat="upperVariant in upperVariants", active="upperVariant.active")
 				a.item-link(href="http://www.backcountry.com")
-					img( ng-src="upperProduct.image)", style="margin:auto;") 
+					img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;") 
 		a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 		a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 
@@ -56,3 +56,4 @@ div(style="float:left")
 				img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
 		a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
 		a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
+		input(type="button", ng-click="foo()")

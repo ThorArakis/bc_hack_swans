@@ -6,31 +6,48 @@ function HomeCtrl($scope, $http) {
     var color = $scope.color;
     var size = $scope.size;
     
+<<<<<<< HEAD
+    var category2 = "pants";
+		$scope.upperProducts = [];
+		$scope.upperVariants = [];
+		var first=true;
+
      $scope.upperGo = function() {    
       $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
 				.success(function(ids) {
-			        var details = [];
-			        ids.forEach(function(id){                         
+							console.log('foo');
+			        ids.forEach(function(id){
                         $http.get("/api/products/"+ id)
                     				.success(function(response) {
-                                        this.concat(response); 
+															$scope.upperProducts.push(response);
+															response.variants.forEach(function(variant){
+																	$scope.upperVariants.push(variant);
+																	if(first) {
+																		setTimeout(function(){
+																			$('#upperCarousel').carousel('next');
+																			console.log('NEXT!!@!!');
+																			}, 20);
+																		first=false;
+																	}
+																});
                           });
-                    }, details);
-        	$scope.upperProducts = details;
+                    });
       });
     }
     
     $scope.lowerGo = function() {  
       $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
   				.success(function(ids) {
+						console.log('hey');
   			        var details = [];
                        ids.forEach(function(id){                         
                           $http.get("/api/products/"+ id)
                       				.success(function(response) {                      			     
-                                     this.concat(response); 
+                                     //this.concat(response); 
                             });
                       }, details);
           	$scope.lowerProducts = details;
+						console.log('yeah');
         });
    }
      
