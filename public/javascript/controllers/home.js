@@ -7,15 +7,28 @@ function HomeCtrl($scope, $http) {
     var category2 = "pants";
     
       $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender)
-				.success(function(response) {
-        	$scope.upperProducts = response;
+				.success(function(ids) {
+			        var details = [];
+			        ids.forEach(function(id){                         
+                        $http.get("/api/products/"+ id)
+                    				.success(function(response) {
+                                        this.concat(response); 
+                          });
+                    }, details);
+        	$scope.upperProducts = details;
       });
-     
-      $http.get("/api/products?category=" + category2 + "&brand=" + brand + "&gender=" + gender)
-				.success(function(response) {
-					$scope.lowerProducts = response;
-					
-       });
+      
+      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender)
+  				.success(function(ids) {
+  			        var details = [];
+                       ids.forEach(function(id){                         
+                          $http.get("/api/products/"+ id)
+                      				.success(function(response) {                      			     
+                                     this.concat(response); 
+                            });
+                      }, details);
+          	$scope.lowerProducts = details;
+        });
      
      $scope.brands = [
         { name: 'The North Face' },
