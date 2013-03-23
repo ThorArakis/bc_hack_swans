@@ -14,6 +14,8 @@ html(ng-app="outfitter")
 		script(src='javascript/controllers/chris.js')
 		script(src='javascript/controllers/details.js')
 	body(style="background-image: url('../images/Ski_slope.jpg');")
-		h1= title
+		div(style="text-align:center")
+			h1= title
+		img(src="http://www.backcountry.com/images/bcs/header/logo.png?1343144381", style="position:absolute; top:20px; left:20px")
 		section(ng-view)
 

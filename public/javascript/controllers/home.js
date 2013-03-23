@@ -1,10 +1,13 @@
 function HomeCtrl($scope, $http) {
     
    
-    $http.get("/api/products/MAR1534").success(function(response) {
-        $scope.product = response;
-        $scope.variant = response.variants[0];
-    }); 
+    $scope.upperProduct;
+	$scope.upperVariant;
+	$scope.lowerProduct;
+	$scope.lowerVariant;
+	$scope.productIndex = 0;
+	$scope.variantIndex = 0;
+
     $http.get("/api/products/MAR1534/reviews").success(function(response) {
         $scope.community = response;
     }); 
@@ -116,7 +119,21 @@ function HomeCtrl($scope, $http) {
        ];
     
     $(document).ready(function(){
-	    $('#upperCarousel, #lowerCarousel').carousel({ interval: false });		
+	    $('#upperCarousel, #lowerCarousel').carousel({ 
+				interval: false,
+				slid: function(e) {
+					alert('hi');
+					alert(e);
+					if($scope.product.variants.length > $scope.variantIndex + 1) {
+						$scope.variantIndex++;
+						$scope.variant = $scope.product.variants[$scope.variantIndex];
+					} else if ($scope.products.length > $scope.productIndex + 1)  {
+						$scope.productIndex++;
+						$scope.product = $scope.products[$scope.productIndex ];
+						$scope.variant = $scope.product.variants[0];
+					}
+				}
+		});
     });
 	
 	
