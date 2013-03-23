@@ -7,10 +7,8 @@ function HomeCtrl($scope, $http) {
 	$scope.lowerVariant;
 	$scope.upperProductIndex = 0;
 	$scope.upperVariantIndex = 0;
-
-    $http.get("/api/products/MAR1534/reviews").success(function(response) {
-        $scope.community = response;
-    }); 
+	$scope.upperCommunity;
+	$scope.lowerCommunity;
     
 		$scope.upperProducts = [];
 		$scope.upperVariants = [];
@@ -135,15 +133,53 @@ function HomeCtrl($scope, $http) {
 						$scope.upperVariantIndex = 0;
 						$scope.variant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+    					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
 					} else {
 						$scope.upperProductIndex = 0;
 						$scope.upperVariantIndex = 0;
-						$scope.upperProduct = $scope.upperProduct[$scope.upperProductIndex];
-						$scope.variant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+    					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
 					}
 				} else {
 					$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
 					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+    					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
+				}
+			} else if(e.direction == "right") {
+				if($scope.upperProduct) {
+					if($scope.upperVariantIndex - 1 >= 0) {
+						$scope.upperVariantIndex--;
+						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+					} else if ($scope.upperProductIndex - 1 >= 0) {
+						$scope.upperProductIndex--;
+						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+						$scope.upperVariantIndex = $scope.upperProduct.variants.length - 1;
+						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+    					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
+					} else {
+						$scope.upperProductIndex = $scope.upperProducts.length - 1;
+						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+						$scope.upperVariantIndex = $scope.upperProduct.variants.length - 1; 
+						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+    					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
+					}
+				} else {
+					$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+						$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
+							$scope.upperCommunity = response;
+						});
 				}
 			}
 			$scope.$apply();

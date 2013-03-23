@@ -4,6 +4,7 @@ exports.getProduct = function(id, color, callback) {
 	json.getJSON('http://hackathon.backcountry.com:8080/hackathon/public/product/' + id, function(err, result) {
 		if(!err) {
 				var model = { };
+				model.id = result.id;
 				model.title = result.title;
 				model.description = result.fullDescription;
 				model.bulletPoints = result.bulletPoints;
