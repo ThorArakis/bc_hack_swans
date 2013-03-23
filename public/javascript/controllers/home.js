@@ -5,8 +5,8 @@ function HomeCtrl($scope, $http) {
 	$scope.upperVariant;
 	$scope.lowerProduct;
 	$scope.lowerVariant;
-	$scope.productIndex = 0;
-	$scope.variantIndex = 0;
+	$scope.upperProductIndex = 0;
+	$scope.upperVariantIndex = 0;
 
     $http.get("/api/products/MAR1534/reviews").success(function(response) {
         $scope.community = response;
@@ -121,18 +121,32 @@ function HomeCtrl($scope, $http) {
     $(document).ready(function(){
 	    $('#upperCarousel, #lowerCarousel').carousel({ 
 				interval: false,
-				slid: function(e) {
-					alert('hi');
-					alert(e);
-					if($scope.product.variants.length > $scope.variantIndex + 1) {
-						$scope.variantIndex++;
-						$scope.variant = $scope.product.variants[$scope.variantIndex];
-					} else if ($scope.products.length > $scope.productIndex + 1)  {
-						$scope.productIndex++;
-						$scope.product = $scope.products[$scope.productIndex ];
-						$scope.variant = $scope.product.variants[0];
+		});
+
+		
+	    $('#upperCarousel, #lowerCarousel').bind('slide', function(e) { 
+			if(e.direction == "left") {
+				if($scope.upperProduct) {
+					if($scope.upperProduct.variants.length > $scope.upperVariantIndex + 1) {
+						$scope.upperVariantIndex++;
+						$scope.variant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+					} else if ($scope.upperProducts.length > $scope.upperProductIndex + 1) {
+						$scope.upperProductIndex++;
+						$scope.upperVariantIndex = 0;
+						$scope.variant = $scope.upperProduct.variants[$scope.upperVariantIndex];
+						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+					} else {
+						$scope.upperProductIndex = 0;
+						$scope.upperVariantIndex = 0;
+						$scope.upperProduct = $scope.upperProduct[$scope.upperProductIndex];
+						$scope.variant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 					}
+				} else {
+					$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
+					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 				}
+			}
+			$scope.$apply();
 		});
     });
 	
