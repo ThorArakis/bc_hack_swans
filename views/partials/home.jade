@@ -20,7 +20,7 @@ div.row-fluid
 			br
 			button.btn.btn-success(ng-click="upperGo()", style="width:220px;") Load Closet
 	div.span6
-			div.carousel.slide#upperCarousel(style="height:400px; z-index:9999")
+			div.carousel.slide#upperCarousel(style="height:400px; z-index:9999", ng-show="upperProduct")
 				div.carousel-inner
 					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
 						a(href="{{upperVariant.defaultSeoUrl}}", target="_blank")
@@ -90,7 +90,7 @@ div.row-fluid
 			br
 			button.btn.btn-success(ng-click="lowerGo()", style="width:220px;") Load Closet 
 	div.span6
-			div.carousel.slide#lowerCarousel(style="height:400px; z-index:9998")
+			div.carousel.slide#lowerCarousel(style="height:400px; z-index:9998", ng-show="lowerProduct")
 				div.carousel-inner
 					div.item(ng-repeat="lowerVariant in lowerVariants")
 						a(href="{{lowerVariant.defaultSeoUrl}}", target="_blank")
