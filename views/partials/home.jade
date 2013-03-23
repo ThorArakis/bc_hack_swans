@@ -6,7 +6,7 @@ div.row-fluid
 			option(ng-repeat="category in categories", value="{{category.name}}"){{category.name}}
 		select(ng-model="upperBrand")
 			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brandList", value="{{brand.name}}"){{brand.name}}
+			option(ng-repeat="brand in brands", value="{{brand.name}}"){{brand.name}}
 		select(ng-model="upperGender")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="{{gender.name}}"){{gender.name}}
@@ -69,21 +69,21 @@ div.row-fluid
 div.row-fluid
 	div.span3.lowerBodyDiv
 		h4 Lower Body
-		select(name="lowCatsDropDown", ng-model="upperCategory")
+		select(name="lowCatsDropDown", ng-model="lowerCategory")
 			option(value="") -- Select Category --	
-			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(name="lowBrandsDropDown", ng-model="supperBrand")
+			option(ng-repeat="category in categories", value="{{category.name}}") {{category.name}}
+		select(name="lowBrandsDropDown", ng-model="lowerBrand")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
-		select(name="lowGenderDropDown")
+		select(name="lowGenderDropDown", ng-model="lowerGender")
 			option(value="") -- Select Gender --	
-			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
-		select(name="lowColorDropDown")
+			option(ng-repeat="gender in genders", value="{{gender.name}}") {{gender.name}}	
+		select(name="lowColorDropDown", ng-model="lowerColor")
 			option(value="") -- Select Color --	
-			option(ng-repeat="color in colors", value="color.name") {{color.name}}
-		select(name="lowSizeDropDown")
+			option(ng-repeat="color in colors", value="{{color.name}}") {{color.name}}
+		select(name="lowSizeDropDown", ng-model="lowerSize")
 			option(value="") -- Select Size --	
-			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+			option(ng-repeat="size in sizes", value="{{size.name}}") {{size.name}}
 		button(ng-click="lowerGo()") Load Closet 
 	div.span6
 			div.carousel.slide#lowerCarousel(style="height:400px;")
