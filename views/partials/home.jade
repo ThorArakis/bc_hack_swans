@@ -20,11 +20,11 @@ div.row-fluid
 			br
 			button.btn.btn-success(ng-click="upperGo()", style="width:220px;") Load Closet
 	div.span6
-			div.carousel.slide#upperCarousel(style="height:400px;")
+			div.carousel.slide#upperCarousel(style="height:400px; z-index:9999")
 				div.carousel-inner
 					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
 						a(href="www.backcountry.com")
-							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
+							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto; margin-top:40px;")
 							#img( ng-src="{{upperVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
@@ -91,7 +91,7 @@ div.row-fluid
 			br
 			button.btn.btn-success(ng-click="lowerGo()", style="width:220px;") Load Closet 
 	div.span6
-			div.carousel.slide#lowerCarousel(style="height:400px;")
+			div.carousel.slide#lowerCarousel(style="height:400px; z-index:9998")
 				div.carousel-inner
 					div.item(ng-repeat="lowerVariant in lowerVariants")
 						a(href="www.backcountry.com")
