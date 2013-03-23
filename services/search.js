@@ -59,7 +59,7 @@ function getModels(products) {
 		//model.description = product.description;
 		//model.rating = product.averageReviewRating;
 		//model.ratingUrl = product.ratingUrl;
-		model.defaultSeoUrl = product.defaultSeoUrl.replace;
+		model.defaultSeoUrl = 'http://www.backcountry.com/Store/catalog/productLanding.jsp?' + product.defaultSeoUrl.split('?')[1];
 		//model.image = product.imageLarge.url;
 
 		models.push(model);

@@ -27,7 +27,6 @@ function HomeCtrl($scope, $http) {
 				.success(function(products) {
 			        products.forEach(function(product){
 							var url = "/api/products/"+ product.id;
-							console.log('url: ' + product.defaultSeoUrl);
 						  if($scope.upperColor || $scope.upperSize) {
 								url += "?";		 
 								if($scope.upperColor && $scope.upperSize) {
@@ -76,10 +75,11 @@ function HomeCtrl($scope, $http) {
 								if($scope.lowerColor) url +=  "color=" + $scope.lowerColor;
 								if($scope.lowerSize) url += "size=" + $scope.lowerSize;
 							}
-						  }
+								}
                           $http.get(url).success(function(response) {
 															$scope.lowerProducts.push(response);
 															response.variants.forEach(function(variant){
+																	variant.defaultSeoUrl = product.defaultSeoUrl;
 																	$scope.lowerVariants.push(variant);
 																	if(first) {
 																		setTimeout(function(){
