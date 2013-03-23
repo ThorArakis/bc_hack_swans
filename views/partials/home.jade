@@ -1,21 +1,55 @@
-Search: input (ng-model="query")
-br
-div.carousel.slide#upperCarousel
-	ol.carousel-indicators
-		li.active(data-target="#upperCarousel", data-slide-to="0")
-		li(data-target="#upperCarousel", data-slide-to="1")
-	div.carousel-inner
-		div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
-			img( ng-src="{{upperProduct.image}}", style="margin:auto;")
-	a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
-	a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
+div(style="float:left;width:300px;padding-top:20px")
+	.upperBodyDiv
+		h4 Upper Body
+		select(name="upCatsDropDown")
+			option(value="") -- Select Category --	
+			option(ng-repeat="category in categories", value="category.name") {{category.name}}
+		select(name="upBrandsDropDown")
+			option(value="") -- Select Brand --	
+			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
+		select(name="upperGenderDropDown")
+			option(value="") -- Select Gender --	
+			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
+		select(name="upColorDropDown")
+			option(value="") -- Select Color --	
+			option(ng-repeat="color in color", value="color.name") {{color.name}}
+		select(name="upSizeDropDown")
+			option(value="") -- Select Size --	
+			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+	.lowerBodyDiv
+		h4 Lower Body
+		select(name="lowCatsDropDown")
+			option(value="") -- Select Category --	
+			option(ng-repeat="category in categories", value="category.name") {{category.name}}
+		select(name="lowBrandsDropDown")
+			option(value="") -- Select Brand --	
+			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
+		select(name="lowGenderDropDown")
+			option(value="") -- Select Gender --	
+			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
+		select(name="lowColorDropDown")
+			option(value="") -- Select Color --	
+			option(ng-repeat="color in color", value="color.name") {{color.name}}
+		select(name="lowSizeDropDown")
+			option(value="") -- Select Size --	
+			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+div(style="float:left")
+	div.carousel.slide#upperCarousel
+		ol.carousel-indicators
+			li.active(data-target="#upperCarousel", data-slide-to="0")
+			li(data-target="#upperCarousel", data-slide-to="1")
+		div.carousel-inner
+			div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
+				img( ng-src="{{upperProduct.image}}", style="margin:auto;")
+		a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
+		a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 
-div.carousel.slide#lowerCarousel
-	ol.carousel-indicators
-		li.active(data-target="#lowerCarousel", data-slide-to="0")
-		li(data-target="#lowerCarousel", data-slide-to="1")
-	div.carousel-inner
-		div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
-			img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
-	a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
-	a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
+	div.carousel.slide#lowerCarousel
+		ol.carousel-indicators
+			li.active(data-target="#lowerCarousel", data-slide-to="0")
+			li(data-target="#lowerCarousel", data-slide-to="1")
+		div.carousel-inner
+			div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
+				img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+		a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
+		a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
