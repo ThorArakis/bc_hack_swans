@@ -6,6 +6,8 @@ exports.getProduct = function(id, color, callback) {
 				var model = { };
 				model.title = result.title;
 				model.description = result.fullDescription;
+				model.bulletPoints = result.bulletPoints;
+				model.bottomLine = result.bottomLine;
 				model.features = result.features;
 				model.variants = [];	
 				result.skus.forEach(function(sku) {

@@ -59,7 +59,7 @@ function getModels(products) {
 		model.rating = product.averageReviewRating;
 		model.ratingUrl = product.ratingUrl;
 		model.image = product.imageLarge.url;
-		models.push(model);
+		models.push(product.id);
 	});
 	return models;
 }
