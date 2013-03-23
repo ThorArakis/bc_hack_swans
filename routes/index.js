@@ -28,7 +28,7 @@ exports.getProducts = function(req, res) {
 };
 
 exports.getProduct = function(req, res) {
-    if(req.params.id && req.query.color) {
+    if(req.params.id) {
         productService.getProduct(req.params.id, req.query.color, function(err, product) {
             if(!err) {
                 res.send(product);
@@ -37,7 +37,7 @@ exports.getProduct = function(req, res) {
             }   
         }); 
     } else {
-        throw new Error("Id and Color are required");
+        throw new Error("Id is required");
     }   
 };
 
