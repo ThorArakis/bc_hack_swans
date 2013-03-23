@@ -27,21 +27,21 @@ function HomeCtrl($scope, $http) {
 				.success(function(ids) {
 							console.log('foo');
 			        ids.forEach(function(id){
-                        $http.get("/api/products/"+ id)
-                    				.success(function(response) {
-															$scope.upperProducts.push(response);
-															response.variants.forEach(function(variant){
-																	$scope.upperVariants.push(variant);
-																	if(first) {
-																		setTimeout(function(){
-																			$('#upperCarousel').carousel('next');
-																			}, 20);
-																		first=false;
-																	}
-																});
-                          });
-                    });
-      });
+									$http.get("/api/products/"+ id)
+											.success(function(response) {
+												$scope.upperProducts.push(response);
+												response.variants.forEach(function(variant){
+														$scope.upperVariants.push(variant);
+														if(first) {
+															setTimeout(function(){
+																$('#upperCarousel').carousel('next');
+																}, 20);
+															first=false;
+														}
+													});
+									  });
+								});
+			  });
     }
     
     $scope.lowerGo = function() {  
