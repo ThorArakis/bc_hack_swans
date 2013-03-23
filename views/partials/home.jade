@@ -1,18 +1,15 @@
-div
-	carousel(interval="myInterval")
-		slide(ng-repeat="slide in slides", active="slide.active")
-			img(ng-src="{{slide.image}}", style="margin:auto;")
-				.carousel-caption
-				h4 = Slide {{$index}}
-				p = {{slide.text}}
-					.row-fluid
-					.span6
-						ul  
-							li  
-								button(class="btn btn-mini", ng-class="{'btn-info': !slide.active, 'btn-success': slide.active}", ng-disabled="slide.active", ng-click="slide.active = true") Select
-								{{$index}}: {{slide.text}}
-								a(class="btn", ng-click"addSlide()") Add Slide
-					.span 6
-						Interval, in milliseconds: input(type="number", ng-model="myInterval")
-						br  
-						Enter a negative number to stop the interval.
+div.carousel.slide#myCarousel
+	ol.carousel-indicators
+		li.active(data-target="#myCarousel", data-slide-to="0")
+		li(data-target="#myCarousel", data-slide-to="1")
+	div.carousel-inner
+		div.active.item
+			img(src="http://content.backcountry.com/images/items/medium/NEW/NEW0111/BN.jpg")
+			div.carousel-caption
+				h4: First Thumbnail Label
+		div.item
+			img(src="http://content.backcountry.com/images/items/medium/NEW/NEW0138/PK.jpg")
+			div.carousel-caption
+				h4: Second Thumbnail Label
+	a.carousel-control.left(href="#myCarousel", data-slide="prev")&lsaquo;
+	a.carousel-control.right(href="#myCarousel", data-slide="next")&rsaquo;
