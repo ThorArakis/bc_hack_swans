@@ -1,15 +1,21 @@
-div.carousel.slide#myCarousel
+Search: input (ng-model="query")
+br
+div.carousel.slide#upperCarousel
 	ol.carousel-indicators
-		li.active(data-target="#myCarousel", data-slide-to="0")
-		li(data-target="#myCarousel", data-slide-to="1")
+		li.active(data-target="#upperCarousel", data-slide-to="0")
+		li(data-target="#upperCarousel", data-slide-to="1")
 	div.carousel-inner
-		div.active.item
-			img(src="http://content.backcountry.com/images/items/medium/NEW/NEW0111/BN.jpg")
-			div.carousel-caption
-				h4: First Thumbnail Label
-		div.item
-			img(src="http://content.backcountry.com/images/items/medium/NEW/NEW0138/PK.jpg")
-			div.carousel-caption
-				h4: Second Thumbnail Label
-	a.carousel-control.left(href="#myCarousel", data-slide="prev")&lsaquo;
-	a.carousel-control.right(href="#myCarousel", data-slide="next")&rsaquo;
+		div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
+			img( ng-src="{{upperProduct.image}}", style="margin:auto;")
+	a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
+	a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
+
+div.carousel.slide#lowerCarousel
+	ol.carousel-indicators
+		li.active(data-target="#lowerCarousel", data-slide-to="0")
+		li(data-target="#lowerCarousel", data-slide-to="1")
+	div.carousel-inner
+		div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
+			img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+	a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
+	a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
