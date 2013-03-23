@@ -2,6 +2,7 @@ var http = require('http');
 var image_serve = require('../services/image_serve');
 var search = require('../services/search');
 var productService = require('../services/product');
+var communityService = require('../services/community');
 
 exports.index = function(req, res){
    res.render('index.jade', { title: 'The Outfitter' });
@@ -32,6 +33,20 @@ exports.getProduct = function(req, res) {
         productService.getProduct(req.params.id, req.query.color, function(err, product) {
             if(!err) {
                 res.send(product);
+            } else {
+                throw err;
+            }   
+        }); 
+    } else {
+        throw new Error("Id is required");
+    }   
+};
+
+exports.getCommunity = function(req, res) {
+    if(req.params.id) {
+        communityService.getCommunity(req.params.id, function(err, community) {
+            if(!err) {
+                res.send(community);
             } else {
                 throw err;
             }   
