@@ -4,9 +4,9 @@ div.row
 		select(ng-model="category", style="width: 150px;")
 			option(value="") -- Select Category --	
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(ng-model="brand", style="width: 150px;")
+		select(ng-model="selectedBrand", style="width: 150px;")
 			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
+			option(ng-repeat="brand in brandList", value="{{brand.name}}") {{brand.name}}	
 		select(ng-model="gender", style="width: 150px;")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
@@ -16,7 +16,7 @@ div.row
 		select(ng-model="size", style="width: 150px;")
 			option(value="") -- Select Size --	
 			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
-		button(ng-click="upperGo()") Go
+		button(ng-click="upperGo()") Load Closet
 	div.span6
 			div.carousel.slide#upperCarousel(style="height:400px;")
 				ol.carousel-indicators
@@ -75,7 +75,7 @@ div.row
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
 		select(name="lowBrandsDropDown", style="width: 150px;")
 			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
+			option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
 		select(name="lowGenderDropDown", style="width: 150px;")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	

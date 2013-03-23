@@ -1,7 +1,7 @@
 function HomeCtrl($scope, $http) {
     
     var category = $scope.category;
-    var brand = $scope.brand;
+    var brand = $scope.selectedBrand;
     var gender = $scope.gender;    
     var color = $scope.color;
     var size = $scope.size;
@@ -17,10 +17,13 @@ function HomeCtrl($scope, $http) {
     var category2 = "pants";
 		$scope.upperProducts = [];
 		$scope.upperVariants = [];
+		$scope.lowerProducts = [];
+		$scope.lowerVariants = [];
 		var first=true;
 
-     $scope.upperGo = function() {    
-      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
+     $scope.upperGo = function() {
+			 console.log('brand: ' + $scope.selectedBrand);
+      $http.get("/api/products?category=" + category + "&brand=" + $scope.brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
 				.success(function(ids) {
 							console.log('foo');
 			        ids.forEach(function(id){
@@ -49,8 +52,18 @@ function HomeCtrl($scope, $http) {
   			        var details = [];
                        ids.forEach(function(id){                         
                           $http.get("/api/products/"+ id)
-                      				.success(function(response) {                      			     
-                                     //this.concat(response); 
+                      				.success(function(response) {
+															$scope.lowerProducts.push(response);
+															response.variants.forEach(function(variant){
+																	$scope.lowerVariants.push(variant);
+																	if(first) {
+																		setTimeout(function(){
+																			$('#lowerCarousel').carousel('next');
+																			console.log('NEXT!!@!!');
+																			}, 20);
+																		first=false;
+																	}
+																});
                             });
                       }, details);
           	$scope.lowerProducts = details;
@@ -58,7 +71,7 @@ function HomeCtrl($scope, $http) {
         });
    }
      
-     $scope.brands = [
+     $scope.brandList = [
         { name: 'The North Face' },
         { name: 'Marmot' },
         { name: 'Patagonia' }      
