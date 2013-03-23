@@ -4,7 +4,7 @@ var app = angular.
 		$routeProvider.
 		when('/', {templateUrl: 'partials/home', controller: HomeCtrl}).
 		otherwise({redirectTo: '/'}) }]).
-	run(function() {
-
+	run(function($location) {
+		$location.path('/');
 	});
 

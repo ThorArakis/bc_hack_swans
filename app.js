@@ -37,6 +37,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
 app.get('/api/products', productController.getProducts);
 
 http.createServer(app).listen(app.get('port'), function(){

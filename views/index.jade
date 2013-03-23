@@ -10,7 +10,7 @@ html(ng-app="outfitter")
 		script(src='javascript/lib/angular-strap.min.js')
 		script(src='javascript/lib/ui-bootstrap.min.js')
 		script(src='javascript/app.js')
-		script(src='javascript/controllers/main.js')
+		script(src='javascript/controllers/home.js')
 	body
 		h1= title
-		input(type="textbox", ng-model="myVar")
+		section(ng-view)
