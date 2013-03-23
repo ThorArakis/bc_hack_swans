@@ -6,7 +6,6 @@ function HomeCtrl($scope, $http) {
     var color = $scope.color;
     var size = $scope.size;
     
-<<<<<<< HEAD
     var category2 = "pants";
 		$scope.upperProducts = [];
 		$scope.upperVariants = [];
