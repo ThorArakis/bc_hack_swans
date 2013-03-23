@@ -1,0 +1,31 @@
+fieldset(style="width:400px;")
+	legend Product Details
+	div.accordion#accordion2(style="background-color:#ffffff")
+		div.accordion-group
+			div.accordion-heading
+				a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseOne")
+					span Details
+			div.accordion-body.collapse.in#collapseOne
+				div.accordion-inner
+					b {{product.title}}
+					p
+					div(ng-bind-html-unsafe="product.description")
+					p
+					b Price: ${{variant.price}}
+		div.accordion-group(style="background-color:#ffffff")
+			div.accordion-heading
+				a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseTwo")
+					span Tech Specs	
+			div.accordion-body.collapse#collapseTwo
+				div.accordion-inner
+					table.table.table-striped.table-bordered
+						tr(ng-repeat="feature in product.features")
+							td(style="width:150px; font-size:12px;"): b {{feature.displayName}}
+							td(style="font-size:12px;") {{feature.value}}
+		div.accordion-group(style="background-color:#ffffff")
+			div.accordion-heading
+				a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseThree")
+					span Community
+			div.accordion-body.collapse#collapseThree
+				div.accordion-inner
+					span stuff
