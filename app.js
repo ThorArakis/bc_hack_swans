@@ -14,6 +14,7 @@ var express = require('express')
 var app = express();
 
 var productController = require('./controllers/product');
+var imageController = require('./controllers/image_serve');
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -39,6 +40,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 app.get('/api/products', productController.getProducts);
+app.get('/api/image', imageController.getImage);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
