@@ -42,7 +42,6 @@ exports.getProduct = function(req, res) {
 };
 
 exports.getImage = function(req, res) {
-    console.log(JSON.stringify(req.query));
     var options = req.query;
     console.log(JSON.stringify(options));
     if (options.url){
@@ -51,5 +50,8 @@ exports.getImage = function(req, res) {
 						if (typeof(stuff_back == 'string')) console.log('size: ' + stuff_back.length);
 						res.end(stuff_back, 'binary');
         }); 
-    }   
+    } 
+		else {
+			res.send("error");
+		}
 };

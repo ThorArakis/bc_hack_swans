@@ -42,7 +42,8 @@ div(style="float:left")
 			li(data-target="#upperCarousel", data-slide-to="1")
 		div.carousel-inner
 			div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
-				img( ng-src="{{upperProduct.image}}", style="margin:auto;")
+				a.item-link(href="http://www.backcountry.com")
+					img( ng-src="upperProduct.image)", style="margin:auto;") 
 		a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 		a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 

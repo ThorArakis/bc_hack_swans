@@ -7,6 +7,7 @@ var exec = require('child_process').exec;
 exports.getImage = function(options, callback) {
 	var splitUrl = options.url.split('/');
 	var fileName = "public/images/cached/" + splitUrl[splitUrl.length-2] + "_" + splitUrl[splitUrl.length-1].split('.')[0] + ".gif";
+	console.log("getting: " + fileName)
 
 	fs.exists(fileName, function(exists){
 		if (exists){
@@ -24,6 +25,7 @@ var getLocalImage = function(fileName, callback) {
 }
 
 var transformImage = function(fileName, callback) {
+	console.log("transforming image: " + fileName)
 	function puts(error, stdout, stderr) {
 		if (error) {
 			console.log("error: " + error);
