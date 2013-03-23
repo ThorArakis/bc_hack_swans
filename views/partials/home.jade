@@ -33,11 +33,11 @@ div.row-fluid
 				div.accordion-group
 					div.accordion-heading(style="background-color:white;")
 						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseOne")
-							span Details
+							b: span(style="font-color:black;") {{upperProduct.title.substring(upperProduct.title.indexOf("-") + 2, upperProduct.title.lastIndexOf("-"))}}
 					div.accordion-body.collapse.in#collapseOne(style="max-height:300px;overflow-y:auto; background-color:white;")
 						div.accordion-inner
 							b {{upperProduct.title}}
-							p   
+							p
 							div(ng-bind-html-unsafe="upperProduct.description")
 							p   
 							b Price - ${{upperVariant.price}}
@@ -103,7 +103,7 @@ div.row-fluid
 				div.accordion-group
 					div.accordion-heading(style="background-color:#ffffff;")
 						a.accordion-toggle(data-toggle="collapse", data-parent="#accordionLower", href="#collapseLower1")
-							span Details
+							b: span(style="font-color:black;") {{lowerProduct.title.substring(lowerProduct.title.indexOf("-") + 2, lowerProduct.title.lastIndexOf("-"))}}
 					div.accordion-body.collapse.in#collapseLower1(style="max-height:300px;overflow-y:auto; background-color:#ffffff")
 						div.accordion-inner
 							b {{lowerProduct.title}}
