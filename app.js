@@ -13,6 +13,8 @@ var express = require('express')
 
 var app = express();
 
+var productController = require('./controllers/product');
+
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -24,6 +26,10 @@ app.configure(function(){
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use(function(err, req, res, next) {
+	console.error(err.stack);
+	res.send(500, 'Oops... you broke the website!');
+  });
 });
 
 app.configure('development', function(){
@@ -31,15 +37,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/api/products', productController.getProducts);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
-//  searchService.performSearch({ category: "mens jackets" }, function(err, res) {
-//  	if(!err) {
-//		console.log(res.totalResults);
-//	} else {
-//		console.log(err);
-//	}
-//  });
 });

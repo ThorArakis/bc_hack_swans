@@ -8,10 +8,10 @@ exports.performSearch = function(options, callback) {
 	if(options.category) {
 		query += options.category;
 		json.getJSON("http://hackathon.backcountry.com:8080/hackathon/public/search?q=" + query, function(err, res) {
+			//filter by size and color
 			callback(err, res);
 		});
 	} else {
 		callback("Must provide category");
 	}
-
-	}
+}
