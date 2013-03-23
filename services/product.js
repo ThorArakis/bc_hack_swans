@@ -1,6 +1,6 @@
 var json = require('./json');
 
-exports.getProduct = function(id, color, callback) {
+exports.getProduct = function(id, color, size, callback) {
 	json.getJSON('http://hackathon.backcountry.com:8080/hackathon/public/product/' + id, function(err, result) {
 		if(!err) {
 				var model = { };
@@ -13,7 +13,7 @@ exports.getProduct = function(id, color, callback) {
 				model.variants = [];	
 				result.skus.forEach(function(sku) {
 					var item = { };
-					if(((color && sku.color == color) || !color) && sku.color != "" && sku.images.large != "") {
+					if(((color && sku.color.toLowerCase() == color.toLowerCase()) || !color) && ((size && sku.size.toLowerCase() == size.toLowerCase()) || !size) && sku.color != "" && sku.images.large != "") {
 						item.color = sku.color;
 						item.image = sku.images.large;
 						item.price = sku.listPrice;

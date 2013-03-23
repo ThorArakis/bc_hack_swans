@@ -7,6 +7,7 @@ exports.performSearch = function(options, callback) {
 
 	if(options.category) {
 		query += options.category;
+		console.log(query);
 		var products = getProducts("http://hackathon.backcountry.com:8080/hackathon/public/search?q=" + query, function(err, result) {
 				if(options.color) {
 					getProductsByFacet(result, "Color", options.color, function(err, result) {
@@ -75,10 +76,11 @@ function getProducts(url, callback) {
 function getProductsByFacet(result, facetName, facetValue, callback) {
 	var exists = false;
 	result.facets.forEach(function(facet) {
-		if(facet.name == facetName) {
+		if(facet.name.toLowerCase() == facetName.toLowerCase()) {
 			facet.filters.forEach(function(filter) {
-				if(filter.name == facetValue) {
+				if(filter.name.toLowerCase() == facetValue.toLowerCase()) {
 					exists = true;
+					console.log("facet: " + filter.url);
 					result = getProducts(filter.url, function(err, result) {
 						callback(err, result);
 					});

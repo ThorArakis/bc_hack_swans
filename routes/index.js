@@ -30,7 +30,7 @@ exports.getProducts = function(req, res) {
 
 exports.getProduct = function(req, res) {
     if(req.params.id) {
-        productService.getProduct(req.params.id, req.query.color, function(err, product) {
+        productService.getProduct(req.params.id, req.query.color, req.query.size, function(err, product) {
             if(!err) {
                 res.send(product);
             } else {

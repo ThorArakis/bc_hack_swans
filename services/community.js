@@ -11,9 +11,11 @@ exports.getCommunity = function(id, callback) {
 					item.title = review.title;
 					item.body = review.body;
 					item.rank = review.rank;
-					item.date = review.user.date_created;
-					item.user = review.user.review_display_name;
-					item.employeeStatus = review.user.employee_status;
+					if(review.user) {
+							item.date = review.user.date_created;
+							item.user = review.review_display_name;
+							item.employeeStatus = review.user.employee_status;
+					}
 					model.reviews.push(item);
 				});
 				callback(null, model);

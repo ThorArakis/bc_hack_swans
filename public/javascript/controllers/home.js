@@ -25,17 +25,25 @@ function HomeCtrl($scope, $http) {
 			 if ($scope.upperSize) query += ("&size=" + $scope.upperSize);
       $http.get(query)
 				.success(function(ids) {
-							console.log('foo');
 			        ids.forEach(function(id){
-                        $http.get("/api/products/"+ id)
-                    				.success(function(response) {
+                        var url = "/api/products/"+ id;
+						  if($scope.upperColor || $scope.upperSize) {
+							url += "?";		 
+							if($scope.upperColor && $scope.upperSize) {
+								url += "color=" + $scope.upperColor + "&size=" + $scope.upperSize;
+							} else {
+								if($scope.upperColor) url +=  "color=" + $scope.upperColor;
+								if($scope.upperSize) url += "size=" + $scope.upperSize;
+							}
+						  }
+						  $http.get(url).success(function(response) {
 															$scope.upperProducts.push(response);
 															response.variants.forEach(function(variant){
 																	$scope.upperVariants.push(variant);
 																	if(first) {
 																		setTimeout(function(){
 																			$('#upperCarousel').carousel('next');
-																			}, 20);
+																			}, 500);
 																		first=false;
 																	}
 																});
@@ -57,15 +65,24 @@ function HomeCtrl($scope, $http) {
   				.success(function(ids) {
   			        var details = [];
                        ids.forEach(function(id){                         
-                          $http.get("/api/products/"+ id)
-                      				.success(function(response) {
+						  var url = "/api/products/"+ id;
+						  if($scope.lowerColor || $scope.lowerSize) {
+							url += "?";		 
+							if($scope.lowerColor && $scope.lowerSize) {
+								url += "color=" + $scope.lowerColor + "&size=" + $scope.lowerSize;
+							} else {
+								if($scope.lowerColor) url +=  "color=" + $scope.lowerColor;
+								if($scope.lowerSize) url += "size=" + $scope.lowerSize;
+							}
+						  }
+                          $http.get(url).success(function(response) {
 															$scope.lowerProducts.push(response);
 															response.variants.forEach(function(variant){
 																	$scope.lowerVariants.push(variant);
 																	if(first) {
 																		setTimeout(function(){
 																			$('#lowerCarousel').carousel('next');
-																			}, 20);
+																			}, 500);
 																		first=false;
 																	}
 																});
@@ -227,7 +244,6 @@ function HomeCtrl($scope, $http) {
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
 						});
-					console.log($scope.lowerProduct);
 				}
 			} else if(e.direction == "right") {
 				if($scope.lowerProduct) {

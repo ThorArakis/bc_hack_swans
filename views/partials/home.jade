@@ -22,8 +22,8 @@ div.row-fluid
 				div.carousel-inner
 					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
 						a(href="www.backcountry.com")
-							#img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
-							img( ng-src="{{upperVariant.image}}", style="margin:auto;")
+							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
+							#img( ng-src="{{upperVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 	div.span3
@@ -90,8 +90,8 @@ div.row-fluid
 				div.carousel-inner
 					div.item(ng-repeat="lowerVariant in lowerVariants")
 						a(href="www.backcountry.com")
-							#img( ng-src="api/image?url={{lowerVariant.image}}", style="margin:auto;")
-							img( ng-src="{{lowerVariant.image}}", style="margin:auto;")
+							img( ng-src="api/image?url={{lowerVariant.image}}", style="margin:auto;")
+							#img( ng-src="{{lowerVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
 	div.span3
