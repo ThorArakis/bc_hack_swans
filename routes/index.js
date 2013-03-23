@@ -28,7 +28,7 @@ exports.getProducts = function(req, res) {
 };
 
 exports.getProduct = function(req, res) {
-    if(req.params.id && req.query.color) {
+    if(req.params.id) {
         productService.getProduct(req.params.id, req.query.color, function(err, product) {
             if(!err) {
                 res.send(product);
@@ -37,7 +37,7 @@ exports.getProduct = function(req, res) {
             }   
         }); 
     } else {
-        throw new Error("Id and Color are required");
+        throw new Error("Id is required");
     }   
 };
 
@@ -46,11 +46,10 @@ exports.getImage = function(req, res) {
     var options = req.query;
     console.log(JSON.stringify(options));
     if (options.url){
-        console.log('calling image');
         image_serve.getImage(options, function(err, stuff_back){
-            console.log('call back woo:');
-            console.log(stuff_back);
+						res.setHeader("Content-Type", "image/jpeg");
+						if (typeof(stuff_back == 'string')) console.log('size: ' + stuff_back.length);
+						res.end(stuff_back, 'binary');
         }); 
     }   
-    res.send("nothing yet");
 };
