@@ -165,6 +165,7 @@ function HomeCtrl($scope, $http) {
 						$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
     					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 					} else {
 						$scope.upperProductIndex = 0;
@@ -173,6 +174,7 @@ function HomeCtrl($scope, $http) {
 						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
     					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 					}
 				} else {
@@ -180,6 +182,7 @@ function HomeCtrl($scope, $http) {
 					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
     					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 				}
 			} else if(e.direction == "right") {
@@ -194,6 +197,7 @@ function HomeCtrl($scope, $http) {
 						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
     					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 					} else {
 						$scope.upperProductIndex = $scope.upperProducts.length - 1;
@@ -202,6 +206,7 @@ function HomeCtrl($scope, $http) {
 						$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
     					$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 					}
 				} else if ($scope.upperProducts) {
@@ -209,6 +214,7 @@ function HomeCtrl($scope, $http) {
 					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 						$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
 							$scope.upperCommunity = response;
+							$scope.$apply();
 						});
 				}
 			}
@@ -228,6 +234,7 @@ function HomeCtrl($scope, $http) {
 						$scope.lowerProduct = $scope.lowerProducts[$scope.lowerProductIndex];
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 					} else {
 						$scope.lowerProductIndex = 0;
@@ -236,6 +243,7 @@ function HomeCtrl($scope, $http) {
 						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 					}
 				} else {
@@ -243,6 +251,7 @@ function HomeCtrl($scope, $http) {
 					$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 				}
 			} else if(e.direction == "right") {
@@ -257,6 +266,7 @@ function HomeCtrl($scope, $http) {
 						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 					} else {
 						$scope.lowerProductIndex = $scope.lowerProducts.length - 1;
@@ -265,6 +275,7 @@ function HomeCtrl($scope, $http) {
 						$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
     					$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 					}
 				} else if ($scope.lowerProducts) {
@@ -272,6 +283,7 @@ function HomeCtrl($scope, $http) {
 					$scope.lowerVariant = $scope.lowerProduct.variants[$scope.lowerVariantIndex];
 						$http.get("/api/products/" + $scope.lowerProduct.id + "/reviews").success(function(response) {
 							$scope.lowerCommunity = response;
+							$scope.$apply();
 						});
 				}
 			}
