@@ -5,8 +5,7 @@ app.service("productService", function($rootScope) {
         //TODO ADD UPPER KEYWORDS
         $.ajax({
             type: "get",
-            url: "api/products/r",
-            data: {category : category, brand : brand, gender : gender},            
+            url: "api/products?category=" + category + "&brand=" + brand + "&gender=" + gender,
             statusCode: {
                     404: function(xhr) {
                         callback(new Error("There are no products for this search"));

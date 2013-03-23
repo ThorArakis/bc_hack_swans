@@ -10,7 +10,7 @@ exports.getProduct = function(id, color, callback) {
 				
 				result.skus.forEach(function(sku) {
 					if(sku.color == color) {
-						model.images = sku.images;
+						model.image = sku.images.large;
 					}
 				});
 				callback(null, model);
