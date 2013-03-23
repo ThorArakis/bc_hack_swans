@@ -1,21 +1,21 @@
 div.row
 	div.span2.upperBodyDiv
 		h4 Upper Body
-		select(ng-model="category", style="width: 150px;")
+		select(ng-model="upperCategory", style="width: 150px;")
 			option(value="") -- Select Category --	
-			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(ng-model="selectedBrand", style="width: 150px;")
+			option(ng-repeat="category in categories", value="{{category.name}}"){{category.name}}
+		select(ng-model="upperBrand", style="width: 150px;")
 			option(value="") -- Select Brand --	
-			option(ng-repeat="brand in brandList", value="{{brand.name}}") {{brand.name}}	
-		select(ng-model="gender", style="width: 150px;")
+			option(ng-repeat="brand in brandList", value="{{brand.name}}"){{brand.name}}
+		select(ng-model="upperGender", style="width: 150px;")
 			option(value="") -- Select Gender --	
-			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
-		select(ng-model="color", style="width: 150px;")
+			option(ng-repeat="gender in genders", value="{{gender.name}}"){{gender.name}}
+		select(ng-model="upperColor", style="width: 150px;")
 			option(value="") -- Select Color --	
-			option(ng-repeat="color in colors", value="color.name") {{color.name}}
-		select(ng-model="size", style="width: 150px;")
+			option(ng-repeat="color in colors", value="{{color.name}}"){{color.name}}
+		select(ng-model="upperSize", style="width: 150px;")
 			option(value="") -- Select Size --	
-			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+			option(ng-repeat="size in sizes", value="{{size.name}}"){{size.name}}
 		button(ng-click="upperGo()") Load Closet
 	div.span6
 			div.carousel.slide#upperCarousel(style="height:400px;")
@@ -23,8 +23,9 @@ div.row
 					li.active(data-target="#upperCarousel", data-slide-to="0")
 					li(data-target="#upperCarousel", data-slide-to="1")
 				div.carousel-inner
-					div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
-						img( ng-src="{{upperProduct.image}}", style="margin:auto;")
+					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
+						a(href="www.backcountry.com")
+							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 	div.span4
@@ -70,10 +71,10 @@ div.row
 div.row
 	div.span2.lowerBodyDiv
 		h4 Lower Body
-		select(name="lowCatsDropDown", style="width: 150px;")
+		select(name="lowCatsDropDown", ng-model="upperCategory", style="width: 150px;")
 			option(value="") -- Select Category --	
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(name="lowBrandsDropDown", style="width: 150px;")
+		select(name="lowBrandsDropDown", ng-model="supperBrand", style="width: 150px;")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
 		select(name="lowGenderDropDown", style="width: 150px;")
@@ -93,7 +94,8 @@ div.row
 					li(data-target="#lowerCarousel", data-slide-to="1")
 				div.carousel-inner
 					div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
-						img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+						a(href="www.backcountry.com")
+							img( ng-src="api/image?url={{lowerProduct.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
 	div.span4

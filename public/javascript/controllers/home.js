@@ -1,10 +1,5 @@
 function HomeCtrl($scope, $http) {
     
-    var category = $scope.category;
-    var brand = $scope.selectedBrand;
-    var gender = $scope.gender;    
-    var color = $scope.color;
-    var size = $scope.size;
    
     $http.get("/api/products/MAR1534").success(function(response) {
         $scope.product = response;
@@ -14,7 +9,6 @@ function HomeCtrl($scope, $http) {
         $scope.community = response;
     }); 
     
-    var category2 = "pants";
 		$scope.upperProducts = [];
 		$scope.upperVariants = [];
 		$scope.lowerProducts = [];
@@ -22,8 +16,14 @@ function HomeCtrl($scope, $http) {
 		var first=true;
 
      $scope.upperGo = function() {
-			 console.log('brand: ' + $scope.selectedBrand);
-      $http.get("/api/products?category=" + category + "&brand=" + $scope.brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
+			 console.log('brand: ' + $scope.upperBrand);
+			 console.log('gender: ' + $scope.upperGender);
+			 query = '/api/products?category=' + $scope.upperCategory;
+			 if ($scope.upperBrand) query += ("&brand=" + $scope.upperBrand);
+			 if ($scope.upperGender) query += ("&gender=" + $scope.upperGender);
+			 if ($scope.upperColor) query += ("&color=" + $scope.upperColor);
+			 if ($scope.upperSize) query += ("&size=" + $scope.upperSize);
+      $http.get(query)
 				.success(function(ids) {
 							console.log('foo');
 			        ids.forEach(function(id){
@@ -46,7 +46,7 @@ function HomeCtrl($scope, $http) {
     }
     
     $scope.lowerGo = function() {  
-      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
+      $http.get("/api/products?category=" + $scope.lowerCategory + "&brand=" + $scope.lowerBrand + "&gender=" + $scope.lowerGender + "&color=" + $scope.lowerColor + "&size=" + $scope.lowerSize)
   				.success(function(ids) {
 						console.log('hey');
   			        var details = [];
