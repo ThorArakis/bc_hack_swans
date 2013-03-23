@@ -55,13 +55,15 @@ function getModels(products) {
 	products.forEach(function(product) {
 		var model = { };
 		model.id = product.id;
-		model.displayName = product.displayName;
-		model.description = product.description;
-		model.rating = product.averageReviewRating;
-		model.ratingUrl = product.ratingUrl;
-		model.defaultSeoUrl = product.defaultSeoUrl;
-		model.image = product.imageLarge.url;
-		models.push(product.id);
+		//model.displayName = product.displayName;
+		//model.description = product.description;
+		//model.rating = product.averageReviewRating;
+		//model.ratingUrl = product.ratingUrl;
+		model.defaultSeoUrl = product.defaultSeoUrl.replace;
+		//model.image = product.imageLarge.url;
+
+		models.push(model);
+
 	});
 	return models;
 }

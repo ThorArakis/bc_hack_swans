@@ -24,21 +24,23 @@ function HomeCtrl($scope, $http) {
 			 if ($scope.upperColor) query += ("&color=" + $scope.upperColor);
 			 if ($scope.upperSize) query += ("&size=" + $scope.upperSize);
       $http.get(query)
-				.success(function(ids) {
-			        ids.forEach(function(id){
-                        var url = "/api/products/"+ id;
+				.success(function(products) {
+			        products.forEach(function(product){
+							var url = "/api/products/"+ product.id;
+							console.log('url: ' + product.defaultSeoUrl);
 						  if($scope.upperColor || $scope.upperSize) {
-							url += "?";		 
-							if($scope.upperColor && $scope.upperSize) {
-								url += "color=" + $scope.upperColor + "&size=" + $scope.upperSize;
-							} else {
-								if($scope.upperColor) url +=  "color=" + $scope.upperColor;
-								if($scope.upperSize) url += "size=" + $scope.upperSize;
-							}
+								url += "?";		 
+								if($scope.upperColor && $scope.upperSize) {
+									url += "color=" + $scope.upperColor + "&size=" + $scope.upperSize;
+								} else {
+									if($scope.upperColor) url +=  "color=" + $scope.upperColor;
+									if($scope.upperSize) url += "size=" + $scope.upperSize;
+								}
 						  }
 						  $http.get(url).success(function(response) {
 															$scope.upperProducts.push(response);
 															response.variants.forEach(function(variant){
+																	variant.defaultSeoUrl = product.defaultSeoUrl;
 																	$scope.upperVariants.push(variant);
 																	if(first) {
 																		setTimeout(function(){
@@ -62,10 +64,10 @@ function HomeCtrl($scope, $http) {
 			 if ($scope.lowerColor) query += ("&color=" + $scope.lowerColor);
 			 if ($scope.lowerSize) query += ("&size=" + $scope.lowerSize);
       $http.get(query)
-  				.success(function(ids) {
+  				.success(function(products) {
   			        var details = [];
-                       ids.forEach(function(id){                         
-						  var url = "/api/products/"+ id;
+                       products.forEach(function(product){                         
+						  var url = "/api/products/"+ product.id;
 						  if($scope.lowerColor || $scope.lowerSize) {
 							url += "?";		 
 							if($scope.lowerColor && $scope.lowerSize) {
