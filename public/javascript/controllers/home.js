@@ -5,7 +5,15 @@ function HomeCtrl($scope, $http) {
     var gender = $scope.gender;    
     var color = $scope.color;
     var size = $scope.size;
-    
+   
+    $http.get("/api/products/MAR1534").success(function(response) {
+        $scope.product = response;
+        $scope.variant = response.variants[0];
+    }); 
+    $http.get("/api/products/MAR1534/reviews").success(function(response) {
+        $scope.community = response;
+    }); 
+ 
      $scope.upperGo = function() {    
       $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
 				.success(function(ids) {

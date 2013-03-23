@@ -1,57 +1,138 @@
-div(style="float:left;width:300px;padding-top:20px")
-	.upperBodyDiv
+div.row
+	div.span2.upperBodyDiv
 		h4 Upper Body
-		select(ng-model="category")
+		select(ng-model="category", style="width: 150px;")
 			option(value="") -- Select Category --	
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(ng-model="brand")
+		select(ng-model="brand", style="width: 150px;")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
-		select(ng-model="gender")
+		select(ng-model="gender", style="width: 150px;")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
-		select(ng-model="color")
+		select(ng-model="color", style="width: 150px;")
 			option(value="") -- Select Color --	
 			option(ng-repeat="color in colors", value="color.name") {{color.name}}
-		select(ng-model="size")
+		select(ng-model="size", style="width: 150px;")
 			option(value="") -- Select Size --	
 			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
-	button(ng-click="upperGo()") Go
-	.lowerBodyDiv
+		button(ng-click="upperGo()") Go
+	div.span6
+			div.carousel.slide#upperCarousel(style="height:400px;")
+				ol.carousel-indicators
+					li.active(data-target="#upperCarousel", data-slide-to="0")
+					li(data-target="#upperCarousel", data-slide-to="1")
+				div.carousel-inner
+					div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
+						img( ng-src="{{upperProduct.image}}", style="margin:auto;")
+				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
+				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
+	div.span4
+			div.accordion#accordion2(style="background-color:#ffffff;")
+				div.accordion-group
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseOne")
+							span Details
+					div.accordion-body.collapse.in#collapseOne(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							b {{product.title}}
+							p   
+							div(ng-bind-html-unsafe="product.description")
+							p   
+							div {{product.bulletPoints}}
+							p   
+							b Price - ${{variant.price}}
+				div.accordion-group(style="background-color:#ffffff")
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseTwo")
+							span Tech Specs 
+					div.accordion-body.collapse#collapseTwo(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							table.table.table-striped.table-bordered
+								tr(ng-repeat="feature in product.features")
+									td(style="width:150px; font-size:12px;"): b {{feature.displayName}}
+									td(style="font-size:12px;") {{feature.value}}
+				div.accordion-group(style="background-color:#ffffff")
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseThree")
+							span Community
+					div.accordion-body.collapse#collapseThree(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							div(ng-repeat="review in community.reviews")
+								fieldset
+									legend(style="font-size:14px;font-weight:bold;") 
+										img(src="http://content.backcountry.com/images/bcs/review/search/rating_{{review.rank}}.png")
+										&nbsp;&nbsp;{{review.title}}
+			
+									p   
+										span(style="font-weight:bold") {{review.user}}
+										span &nbsp;- {{review.body}}
+div.row
+	div.span2.lowerBodyDiv
 		h4 Lower Body
-		select(name="lowCatsDropDown")
+		select(name="lowCatsDropDown", style="width: 150px;")
 			option(value="") -- Select Category --	
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(name="lowBrandsDropDown")
+		select(name="lowBrandsDropDown", style="width: 150px;")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
-		select(name="lowGenderDropDown")
+		select(name="lowGenderDropDown", style="width: 150px;")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
-		select(name="lowColorDropDown")
+		select(name="lowColorDropDown", style="width: 150px;")
 			option(value="") -- Select Color --	
 			option(ng-repeat="color in colors", value="color.name") {{color.name}}
-		select(name="lowSizeDropDown")
+		select(name="lowSizeDropDown", style="width: 150px;")
 			option(value="") -- Select Size --	
 			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
-	button(ng-click="lowerGo()") Go
-div(style="float:left")
-	div.carousel.slide#upperCarousel
-		ol.carousel-indicators
-			li.active(data-target="#upperCarousel", data-slide-to="0")
-			li(data-target="#upperCarousel", data-slide-to="1")
-		div.carousel-inner
-			div.item(ng-repeat="upperProduct in upperProducts", active="upperProduct.active")
-				img( ng-src="{{upperProduct.image}}", style="margin:auto;")
-		a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
-		a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
-
-	div.carousel.slide#lowerCarousel
-		ol.carousel-indicators
-			li.active(data-target="#lowerCarousel", data-slide-to="0")
-			li(data-target="#lowerCarousel", data-slide-to="1")
-		div.carousel-inner
-			div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
-				img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
-		a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
-		a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
+		button(ng-click="lowerGo()") Go
+	div.span6
+			div.carousel.slide#lowerCarousel(style="height:400px;")
+				ol.carousel-indicators
+					li.active(data-target="#lowerCarousel", data-slide-to="0")
+					li(data-target="#lowerCarousel", data-slide-to="1")
+				div.carousel-inner
+					div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
+						img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+				a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
+				a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
+	div.span4
+			div.accordion#accordion2(style="background-color:#ffffff;")
+				div.accordion-group
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseOne")
+							span Details
+					div.accordion-body.collapse.in#collapseOne(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							b {{product.title}}
+							p   
+							div(ng-bind-html-unsafe="product.description")
+							p   
+							div {{product.bulletPoints}}
+							p   
+							b Price - ${{variant.price}}
+				div.accordion-group(style="background-color:#ffffff")
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseTwo")
+							span Tech Specs 
+					div.accordion-body.collapse#collapseTwo(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							table.table.table-striped.table-bordered
+								tr(ng-repeat="feature in product.features")
+									td(style="width:150px; font-size:12px;"): b {{feature.displayName}}
+									td(style="font-size:12px;") {{feature.value}}
+				div.accordion-group(style="background-color:#ffffff")
+					div.accordion-heading
+						a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapseThree")
+							span Community
+					div.accordion-body.collapse#collapseThree(style="max-height:300px;overflow-y:auto;")
+						div.accordion-inner
+							div(ng-repeat="review in community.reviews")
+								fieldset
+									legend(style="font-size:14px;font-weight:bold;") 
+										img(src="http://content.backcountry.com/images/bcs/review/search/rating_{{review.rank}}.png")
+										&nbsp;&nbsp;{{review.title}}
+			
+									p   
+										span(style="font-weight:bold") {{review.user}}
+										span &nbsp;- {{review.body}}

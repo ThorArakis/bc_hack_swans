@@ -136,30 +136,30 @@ a {
 }
 
 
-/* Upper Carousel */
+/* Upper Carousel
 #upperCarousel {
   position: relative;
   width: 600px;
-}
+}*/
 
 #upperCarousel .item  a {
   float: left;
   display: inline-block;
-  width: 600px;
+  /*width: 600px;*/
   height:600px;
   text-decoration: none;
 }
 
-/* Lower Carousel */
+/* Lower Carousel
 #lowerCarousel {
   position: relative;
   width: 600px;
-}
+}*/
 
 #lowerCarousel .item a {
   float: left;
   display: inline-block;
-  width: 600px;
+  /*width: 600px;*/
   height: 600px;
   text-decoration: none;
 
