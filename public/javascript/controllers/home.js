@@ -79,9 +79,8 @@ function HomeCtrl($scope, $http) {
         { name: 'Patagonia' }      
       ];
       
-      $scope.categories = [
-		{ name: 'Hoodies & Sweatshirts' },
-	    { name: 'Snowboard Jackets' },
+      $scope.upperCategories = [
+				{ name: 'Hoodies & Sweatshirts' },
         { name: 'Snowboard Jackets' },
         { name: 'Bike Jackets' },
         { name: 'Down Jackets' },
@@ -90,6 +89,17 @@ function HomeCtrl($scope, $http) {
         { name: 'Fleece Jackets' },
         { name: 'Casual Jackets' },
         { name: 'Jackets' }
+      ];
+      
+      $scope.lowerCategories = [
+				{ name: 'Snowboard Pants' },
+        { name: 'Ski Pants' },
+        { name: 'Biking Pants' },
+        { name: 'Softshell Pants' },
+        { name: 'Shell Pants' },
+        { name: 'Casual Pants' },
+				{ name: 'Under Pants' },
+        { name: 'Pants' }
       ];
       
       $scope.genders = [
@@ -175,7 +185,7 @@ function HomeCtrl($scope, $http) {
 							$scope.upperCommunity = response;
 						});
 					}
-				} else {
+				} else if ($scope.upperProducts) {
 					$scope.upperProduct = $scope.upperProducts[$scope.upperProductIndex];
 					$scope.upperVariant = $scope.upperProduct.variants[$scope.upperVariantIndex];
 						$http.get("/api/products/" + $scope.upperProduct.id + "/reviews").success(function(response) {
