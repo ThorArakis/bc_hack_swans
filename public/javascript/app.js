@@ -3,9 +3,9 @@ var app = angular.
 	config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {templateUrl: 'partials/home', controller: HomeCtrl}).
+		when('/chris', {templateUrl: 'partials/chris', controller: ChrisCtrl}).
 		otherwise({redirectTo: '/'}) }]).
 	run(function($location) {
-		$location.path('/');
 	});
 //
 //app.directive('myCarousel', function($parse) {
