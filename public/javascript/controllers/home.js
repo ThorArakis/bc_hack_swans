@@ -1,17 +1,23 @@
-function HomeCtrl($scope) {
-	$scope.myVar = "foo";
-  	$scope.myInterval = 5000;
-  	$scope.slides = [
+function HomeCtrl($scope, productService) {
+    
+  	$scope.upperProducts = productService.getUpperProducts({category : "jacket" , brand: "marmot" , gender : "men"}, function(err, products) {
+        if(err) {
+            $scope.message = err.message;
+        } else {
+            $location.path('/home');
+        }
+        $scope.$apply();
+    });
+    
+  	$scope.lowerProducts = [
 		{image: 'http://placekitten.com/200/200',text: 'Kitten.'},
 		{image: 'http://placekitten.com/225/200',text: 'Kitty!'},
 		{image: 'http://placekitten.com/250/200',text: 'Cat.'},
 		{image: 'http://placekitten.com/275/200',text: 'Feline!'}
-  	];
-  	$scope.addSlide = function() {
-		$scope.slides.push({
-		  image: 'http://placekitten.com/'+(200+25*Math.floor(Math.random()*4))+'/200',
-		  text: ['More','Extra','Lots of','Surplus'][Math.floor(Math.random()*4)] + ' ' +
-			['Cats', 'Kittys', 'Felines', 'Cutes'][Math.floor(Math.random()*4)]
-		});
-  	};		
+  	];  	
+  	$(document).ready(function(){
+		$('#upperCarousel, #lowerCarousel').carousel({ interval: false });		
+	});
+	
+	
 }
