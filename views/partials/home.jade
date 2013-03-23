@@ -17,7 +17,8 @@ div.row-fluid
 			select(ng-model="upperSize")
 				option(value="") -- Select Size --	
 				option(ng-repeat="size in sizes", value="{{size.name}}"){{size.name}}
-			button(ng-click="upperGo()") Load Closet
+			br
+			button.btn.btn-success(ng-click="upperGo()", style="width:220px;") Load Closet
 	div.span6
 			div.carousel.slide#upperCarousel(style="height:400px;")
 				div.carousel-inner
@@ -87,7 +88,8 @@ div.row-fluid
 			select(name="lowSizeDropDown", ng-model="lowerSize")
 				option(value="") -- Select Size --	
 				option(ng-repeat="size in sizes", value="{{size.name}}") {{size.name}}
-			button(ng-click="lowerGo()") Load Closet 
+			br
+			button.btn.btn-success(ng-click="lowerGo()", style="width:220px;") Load Closet 
 	div.span6
 			div.carousel.slide#lowerCarousel(style="height:400px;")
 				div.carousel-inner
