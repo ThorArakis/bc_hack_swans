@@ -97,7 +97,11 @@ function HomeCtrl($scope, $http) {
      $scope.brands = [
         { name: 'The North Face' },
         { name: 'Marmot' },
-        { name: 'Patagonia' }      
+        { name: 'Patagonia' },      
+		{ name: 'Burton' },
+		{ name: 'Mountain Hardware' },
+		{ name: 'Ride' },
+		{ name: 'Solomon }
       ];
       
       $scope.upperCategories = [
