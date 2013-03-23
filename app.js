@@ -13,8 +13,6 @@ var express = require('express')
 
 var app = express();
 
-var productController = require('./controllers/product');
-
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -38,7 +36,8 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
-app.get('/api/products', productController.getProducts);
+app.get('/api/products', routes.getProducts);
+app.get('/api/image', routes.getImage);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
