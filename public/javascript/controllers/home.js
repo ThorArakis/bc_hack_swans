@@ -1,7 +1,7 @@
 function HomeCtrl($scope, $http) {
     
    
-    $scope.upperProduct;
+  $scope.upperProduct;
 	$scope.upperVariant;
 	$scope.lowerProduct;
 	$scope.lowerVariant;
@@ -12,16 +12,13 @@ function HomeCtrl($scope, $http) {
         $scope.community = response;
     }); 
     
-		$scope.upperProducts = [];
-		$scope.upperVariants = [];
-		$scope.lowerProducts = [];
-		$scope.lowerVariants = [];
-		var first=true;
 
+		//Upper carousel
      $scope.upperGo = function() {
-			 console.log('brand: ' + $scope.upperBrand);
-			 console.log('gender: ' + $scope.upperGender);
-			 query = '/api/products?category=' + $scope.upperCategory;
+				var first=true;
+				$scope.upperProducts = [];
+				$scope.upperVariants = [];
+			 var query = '/api/products?category=' + $scope.upperCategory;
 			 if ($scope.upperBrand) query += ("&brand=" + $scope.upperBrand);
 			 if ($scope.upperGender) query += ("&gender=" + $scope.upperGender);
 			 if ($scope.upperColor) query += ("&color=" + $scope.upperColor);
@@ -38,7 +35,6 @@ function HomeCtrl($scope, $http) {
 																	if(first) {
 																		setTimeout(function(){
 																			$('#upperCarousel').carousel('next');
-																			console.log('NEXT!!@!!');
 																			}, 20);
 																		first=false;
 																	}
@@ -49,9 +45,16 @@ function HomeCtrl($scope, $http) {
     }
     
     $scope.lowerGo = function() {  
-      $http.get("/api/products?category=" + $scope.lowerCategory + "&brand=" + $scope.lowerBrand + "&gender=" + $scope.lowerGender + "&color=" + $scope.lowerColor + "&size=" + $scope.lowerSize)
+			var first=true;
+			$scope.lowerProducts = [];
+			$scope.lowerVariants = [];
+			 var query = '/api/products?category=' + $scope.lowerCategory;
+			 if ($scope.lowerBrand) query += ("&brand=" + $scope.lowerBrand);
+			 if ($scope.lowerGender) query += ("&gender=" + $scope.lowerGender);
+			 if ($scope.lowerColor) query += ("&color=" + $scope.lowerColor);
+			 if ($scope.lowerSize) query += ("&size=" + $scope.lowerSize);
+      $http.get(query)
   				.success(function(ids) {
-						console.log('hey');
   			        var details = [];
                        ids.forEach(function(id){                         
                           $http.get("/api/products/"+ id)
@@ -62,7 +65,6 @@ function HomeCtrl($scope, $http) {
 																	if(first) {
 																		setTimeout(function(){
 																			$('#lowerCarousel').carousel('next');
-																			console.log('NEXT!!@!!');
 																			}, 20);
 																		first=false;
 																	}
@@ -70,11 +72,10 @@ function HomeCtrl($scope, $http) {
                             });
                       }, details);
           	$scope.lowerProducts = details;
-						console.log('yeah');
         });
    }
      
-     $scope.brandList = [
+     $scope.brands = [
         { name: 'The North Face' },
         { name: 'Marmot' },
         { name: 'Patagonia' }      
