@@ -1,12 +1,13 @@
 function HomeCtrl($scope, $http) {
     
-    var category = "jackets";
-    var brand = "marmot";
-    var gender = "mens";
+    var category = $scope.category;
+    var brand = $scope.brand;
+    var gender = $scope.gender;    
+    var color = $scope.color;
+    var size = $scope.size;
     
-    var category2 = "pants";
-    
-      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender)
+     $scope.upperGo = function() {    
+      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
 				.success(function(ids) {
 			        var details = [];
 			        ids.forEach(function(id){                         
@@ -17,8 +18,10 @@ function HomeCtrl($scope, $http) {
                     }, details);
         	$scope.upperProducts = details;
       });
-      
-      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender)
+    }
+    
+    $scope.lowerGo = function() {  
+      $http.get("/api/products?category=" + category + "&brand=" + brand + "&gender=" + gender + "&color=" + color + "&size=" + size)
   				.success(function(ids) {
   			        var details = [];
                        ids.forEach(function(id){                         
@@ -29,6 +32,7 @@ function HomeCtrl($scope, $http) {
                       }, details);
           	$scope.lowerProducts = details;
         });
+   }
      
      $scope.brands = [
         { name: 'The North Face' },

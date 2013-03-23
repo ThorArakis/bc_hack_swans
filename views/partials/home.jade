@@ -1,21 +1,22 @@
 div(style="float:left;width:300px;padding-top:20px")
 	.upperBodyDiv
 		h4 Upper Body
-		select(name="upCatsDropDown")
+		select(ng-model="category")
 			option(value="") -- Select Category --	
 			option(ng-repeat="category in categories", value="category.name") {{category.name}}
-		select(name="upBrandsDropDown")
+		select(ng-model="brand")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="brand.name") {{brand.name}}	
-		select(name="upperGenderDropDown")
+		select(ng-model="gender")
 			option(value="") -- Select Gender --	
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
-		select(name="upColorDropDown")
+		select(ng-model="color")
 			option(value="") -- Select Color --	
-			option(ng-repeat="color in color", value="color.name") {{color.name}}
-		select(name="upSizeDropDown")
+			option(ng-repeat="color in colors", value="color.name") {{color.name}}
+		select(ng-model="size")
 			option(value="") -- Select Size --	
 			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+	button(ng-click="upperGo()") Go
 	.lowerBodyDiv
 		h4 Lower Body
 		select(name="lowCatsDropDown")
@@ -29,10 +30,11 @@ div(style="float:left;width:300px;padding-top:20px")
 			option(ng-repeat="gender in genders", value="gender.name") {{gender.name}}	
 		select(name="lowColorDropDown")
 			option(value="") -- Select Color --	
-			option(ng-repeat="color in color", value="color.name") {{color.name}}
+			option(ng-repeat="color in colors", value="color.name") {{color.name}}
 		select(name="lowSizeDropDown")
 			option(value="") -- Select Size --	
 			option(ng-repeat="size in sizes", value="size.name") {{size.name}}
+	button(ng-click="lowerGo()") Go
 div(style="float:left")
 	div.carousel.slide#upperCarousel
 		ol.carousel-indicators
