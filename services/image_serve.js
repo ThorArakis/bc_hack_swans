@@ -10,24 +10,28 @@ exports.getImage = function(options, callback) {
 		console.log("invalid url specified for image!");
 	}
 
-	var http_options = {
+	var splitUrl = options.url.split('/');
+	var fileName = splitUrl[splitUrl.length-2] + "_" + splitUrl[splitUrl.length-1];
+	console.log("file name: " + fileName);
+
+	var httpOptions = {
 		host: parsedUrl.hostname,
 		port: '80',
 		path: parsedUrl.pathname
 	};
 
-
-	http.get(http_options, function(res) {
+	http.get(httpOptions, function(res) {
 		console.log("Got respose: " + res.statusCode);
+		res.setEncoding('binary')
+		var imagedata = ''
+		res.on('data', function(chunk){
+			imagedata+= chunk;
+		});
+		res.on('end', function(){
+			fs.writeFile('public/images/cached/new_image.jpg', imagedata, 'binary', callback(null, imagedata));
+		});
 	}).on('error', function(e) {
 		console.log("Error getting the image. Error: " + e.message);
 	});
 
-	if(options.category) {
-			console.log('foo');
-			callback("not sure why this is here");
-	} else {
-			console.log('bar');
-		callback("Must provide category");
-	}
 }
