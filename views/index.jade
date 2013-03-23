@@ -13,9 +13,14 @@ html(ng-app="outfitter")
 		script(src='javascript/controllers/home.js')
 		script(src='javascript/controllers/chris.js')
 		script(src='javascript/controllers/details.js')
+		script
+			$(function() {
+				$("#addToCart").click(function() { alert('Go Swans!'); });
+			});
 	body(style="background-image: url('../images/Ski_slope.jpg');")
 		div(style="text-align:center")
 			h1= title
 		img(src="http://www.backcountry.com/images/bcs/header/logo.png?1343144381", style="position:absolute; top:20px; left:20px")
+		img#addToCart(src="images/add_outfit_cart.png", style="position:absolute; top:50px; right:50px")
 		section(ng-view)
 
