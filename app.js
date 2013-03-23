@@ -3,6 +3,8 @@
  * Module dependencies.
  */
 
+var searchService = require('./services/search');
+
 var express = require('express')
   , routes = require('./routes')
  // , user = require('./routes/user')
@@ -33,4 +35,11 @@ app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+//  searchService.performSearch({ category: "mens jackets" }, function(err, res) {
+//  	if(!err) {
+//		console.log(res.totalResults);
+//	} else {
+//		console.log(err);
+//	}
+//  });
 });
