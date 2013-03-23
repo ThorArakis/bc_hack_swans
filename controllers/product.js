@@ -9,6 +9,7 @@ exports.getProducts = function(req, res) {
 			if(!err) {
 				res.send(products);
 			} else {
+				console.log("hello")
 				throw err;
 			}
 		});
