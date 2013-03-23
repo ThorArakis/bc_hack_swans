@@ -101,7 +101,7 @@ function HomeCtrl($scope, $http) {
 		{ name: 'Burton' },
 		{ name: 'Mountain Hardware' },
 		{ name: 'Ride' },
-		{ name: 'Solomon }
+		{ name: 'Solomon' }
       ];
       
       $scope.upperCategories = [
