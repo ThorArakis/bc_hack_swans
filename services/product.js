@@ -13,6 +13,8 @@ exports.getProduct = function(id, color, callback) {
 					if(((color && sku.color == color) || !color) && sku.color != "" && sku.images.large != "") {
 						item.color = sku.color;
 						item.image = sku.images.large;
+						item.price = sku.listPrice;
+						item.salePrice = sku.salePrice;
 						if(!hasMatch(item, model.variants)) model.variants.push(item);
 					}
 				});
