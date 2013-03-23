@@ -3,7 +3,7 @@ div.row-fluid
 		h4 Upper Body
 		select(ng-model="upperCategory")
 			option(value="") -- Select Category --	
-			option(ng-repeat="category in categories", value="{{category.name}}"){{category.name}}
+			option(ng-repeat="category in upperCategories", value="{{category.name}}"){{category.name}}
 		select(ng-model="upperBrand")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="{{brand.name}}"){{brand.name}}
@@ -22,8 +22,8 @@ div.row-fluid
 				div.carousel-inner
 					div.item(ng-repeat="upperVariant in upperVariants", active="upperProduct.active")
 						a(href="www.backcountry.com")
-							#img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
-							img( ng-src="{{upperVariant.image}}", style="margin:auto;")
+							img( ng-src="/api/image?url={{upperVariant.image}}", style="margin:auto;")
+							#img( ng-src="{{upperVariant.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#upperCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#upperCarousel", data-slide="next")&rsaquo;
 	div.span3
@@ -71,7 +71,7 @@ div.row-fluid
 		h4 Lower Body
 		select(name="lowCatsDropDown", ng-model="lowerCategory")
 			option(value="") -- Select Category --	
-			option(ng-repeat="category in categories", value="{{category.name}}") {{category.name}}
+			option(ng-repeat="category in lowerCategories", value="{{category.name}}") {{category.name}}
 		select(name="lowBrandsDropDown", ng-model="lowerBrand")
 			option(value="") -- Select Brand --	
 			option(ng-repeat="brand in brands", value="{{brand.name}}") {{brand.name}}	
@@ -88,10 +88,10 @@ div.row-fluid
 	div.span6
 			div.carousel.slide#lowerCarousel(style="height:400px;")
 				div.carousel-inner
-					div.item(ng-repeat="lowerProduct in lowerProducts", active="lowerProduct.active")
+					div.item(ng-repeat="lowerVariant in lowerVariants", active="lowerProduct.active")
 						a(href="www.backcountry.com")
-							#img( ng-src="api/image?url={{lowerProduct.image}}", style="margin:auto;")
-							img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
+							img( ng-src="api/image?url={{lowerVariant.image}}", style="margin:auto;")
+							#img( ng-src="{{lowerProduct.image}}", style="margin:auto;")
 				a.carousel-control.left(href="#lowerCarousel", data-slide="prev")&lsaquo;
 				a.carousel-control.right(href="#lowerCarousel", data-slide="next")&rsaquo;
 	div.span3
